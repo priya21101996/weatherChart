@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "weatherChart": {
+    "weatherReport": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/weatherChart",
+            "outputPath": "dist/weatherReport",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,6 +50,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -58,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "weatherChart:build"
+            "browserTarget": "weatherReport:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "weatherChart:build:production"
+              "browserTarget": "weatherReport:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "weatherChart:build"
+            "browserTarget": "weatherReport:build"
           }
         },
         "test": {
@@ -106,15 +111,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "weatherChart:serve"
+            "devServerTarget": "weatherReport:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "weatherChart:serve:production"
+              "devServerTarget": "weatherReport:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "weatherChart"
+  "defaultProject": "weatherReport"
 }

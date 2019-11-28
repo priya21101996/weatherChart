@@ -1,0 +1,58 @@
+
+<h1> Weather Chart for {{ selectedLocation }} </h1>
+<div flex-gt-sm="50">
+  <div class="pad">
+    <div [style.height.px]="250">
+      <ngx-charts-bar-vertical
+        [results]="single"
+        [view]=[500,250]
+        [scheme]="{ domain: [ '#30E07B', '#E75691', '#00C0FF', '#5D6A75' ] }"
+        [barPadding]="10"
+        [gradient]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [legendTitle]="selectedMetrics"
+        [xAxisLabel]="label"
+        [yAxisLabel]="selectedMetrics"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true">
+      </ngx-charts-bar-vertical>
+    </div>
+  </div>
+
+<mat-form-field>
+  <input matInput [max]="maxDate" [matDatepicker]="fromPicker" [(ngModel)]="fromDate"
+  (dateChange)="fromAndToDateChange($event); setMinDate($event)" placeholder="Choose a date">
+  <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+  <mat-datepicker #fromPicker></mat-datepicker>
+</mat-form-field>
+
+&nbsp;
+<mat-form-field>
+  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="toPicker" [(ngModel)]="toDate" 
+  (dateChange)="fromAndToDateChange($event)" placeholder="Choose a date">
+  <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+  <mat-datepicker #toPicker></mat-datepicker>
+</mat-form-field>
+
+<br/><br/>
+
+<mat-form-field>
+  <mat-label>Choose a Metric</mat-label>
+  <select matNativeControl [(ngModel)]="selectedMetrics" (change)="metricsAndLocationChanged($event.value)">
+    <option value="Tmax">Max Temperature</option>
+    <option value="Tmin">Min Temperature</option>
+    <option value="Rainfall">Rainfall</option>
+  </select>
+</mat-form-field>
+&nbsp;
+<mat-form-field>
+  <mat-label>Choose a Location</mat-label>
+  <select matNativeControl [(ngModel)]="selectedLocation" (change)="metricsAndLocationChanged($event.value)">
+    <option value="UK">UK</option>
+    <option value="England">England</option>
+    <option value="Scotland">Scotland</option>
+    <option value="Wales">Wales</option>
+  </select>
+</mat-form-field>
